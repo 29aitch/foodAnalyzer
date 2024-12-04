@@ -1,0 +1,57 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android.buildFeatures.buildConfig true
+
+android {
+    namespace 'com.example.foodanalyzer'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.foodanalyzer"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Add the API key to BuildConfig
+            buildConfigField "String", "GM_API_KEY", "\"${GM_API_KEY}\""
+        }
+        debug {
+            // Add the API key to BuildConfig
+            buildConfigField "String", "GM_API_KEY", "\"${GM_API_KEY}\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation libs.gson
+    implementation libs.guava
+    implementation libs.appcompat.v161
+    implementation libs.material.v1100
+    implementation libs.constraintlayout.v214
+    implementation(libs.generativeai)
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation libs.generativeai
+    implementation libs.firebase.inappmessaging
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
